@@ -265,6 +265,6 @@ namespace EcommerceShop.Controllers
             _unitOfWork.GetRepositoryInstance<Tbl_Product>().Add(tbl);
             return RedirectToAction("Product");
         }
-
+       
     }
 }

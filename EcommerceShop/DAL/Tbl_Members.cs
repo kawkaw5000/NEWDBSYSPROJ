@@ -32,6 +32,8 @@ public partial class Tbl_Members
 
         this.Tbl_Product = new HashSet<Tbl_Product>();
 
+        this.Tbl_Payment = new HashSet<Tbl_Payment>();
+
     }
 
 
@@ -84,6 +86,10 @@ public partial class Tbl_Members
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<Tbl_Product> Tbl_Product { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Tbl_Payment> Tbl_Payment { get; set; }
 
 }
 

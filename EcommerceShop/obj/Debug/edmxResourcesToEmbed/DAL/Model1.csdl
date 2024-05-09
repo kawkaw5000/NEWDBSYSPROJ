@@ -99,6 +99,15 @@
       <End Role="Tbl_Store" EntitySet="Tbl_Store" />
       <End Role="Tbl_Product" EntitySet="Tbl_Product" />
     </AssociationSet>
+    <EntitySet Name="Tbl_Payment" EntityType="dbMyOnlineShoppingModel.Tbl_Payment" />
+    <AssociationSet Name="FK_Tbl_Payment_Tbl_Members" Association="dbMyOnlineShoppingModel.FK_Tbl_Payment_Tbl_Members">
+      <End Role="Tbl_Members" EntitySet="Tbl_Members" />
+      <End Role="Tbl_Payment" EntitySet="Tbl_Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Payment_Tbl_Product" Association="dbMyOnlineShoppingModel.FK_Tbl_Payment_Tbl_Product">
+      <End Role="Tbl_Product" EntitySet="Tbl_Product" />
+      <End Role="Tbl_Payment" EntitySet="Tbl_Payment" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="GetBySearch_Result">
     <Property Type="Int32" Name="ProductId" Nullable="false" />
@@ -198,6 +207,7 @@
     <NavigationProperty Name="Tbl_Category" Relationship="dbMyOnlineShoppingModel.FK_CatMemberId" FromRole="Tbl_Members" ToRole="Tbl_Category" />
     <NavigationProperty Name="Tbl_Brand" Relationship="dbMyOnlineShoppingModel.FK_Tbl_Brand_Tbl_Members" FromRole="Tbl_Members" ToRole="Tbl_Brand" />
     <NavigationProperty Name="Tbl_Product" Relationship="dbMyOnlineShoppingModel.FK_MemberId" FromRole="Tbl_Members" ToRole="Tbl_Product" />
+    <NavigationProperty Name="Tbl_Payment" Relationship="dbMyOnlineShoppingModel.FK_Tbl_Payment_Tbl_Members" FromRole="Tbl_Members" ToRole="Tbl_Payment" />
   </EntityType>
   <EntityType Name="Tbl_Roles">
     <Key>
@@ -398,6 +408,7 @@
     <NavigationProperty Name="Tbl_Category" Relationship="dbMyOnlineShoppingModel.FK__Tbl_Produ__Categ__145C0A3F" FromRole="Tbl_Product" ToRole="Tbl_Category" />
     <NavigationProperty Name="Tbl_Members" Relationship="dbMyOnlineShoppingModel.FK_MemberId" FromRole="Tbl_Product" ToRole="Tbl_Members" />
     <NavigationProperty Name="Tbl_Store" Relationship="dbMyOnlineShoppingModel.FK_ProdStoreId" FromRole="Tbl_Product" ToRole="Tbl_Store" />
+    <NavigationProperty Name="Tbl_Payment" Relationship="dbMyOnlineShoppingModel.FK_Tbl_Payment_Tbl_Product" FromRole="Tbl_Product" ToRole="Tbl_Payment" />
   </EntityType>
   <Association Name="FK_BrandId">
     <End Type="dbMyOnlineShoppingModel.Tbl_Brand" Role="Tbl_Brand" Multiplicity="0..1" />
@@ -456,6 +467,43 @@
       </Principal>
       <Dependent Role="Tbl_Product">
         <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Tbl_Payment">
+    <Key>
+      <PropertyRef Name="PaymentId" />
+    </Key>
+    <Property Name="PaymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="AmountPaid" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PaymentType" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Tbl_Members" Relationship="dbMyOnlineShoppingModel.FK_Tbl_Payment_Tbl_Members" FromRole="Tbl_Payment" ToRole="Tbl_Members" />
+    <NavigationProperty Name="Tbl_Product" Relationship="dbMyOnlineShoppingModel.FK_Tbl_Payment_Tbl_Product" FromRole="Tbl_Payment" ToRole="Tbl_Product" />
+  </EntityType>
+  <Association Name="FK_Tbl_Payment_Tbl_Members">
+    <End Type="dbMyOnlineShoppingModel.Tbl_Members" Role="Tbl_Members" Multiplicity="0..1" />
+    <End Type="dbMyOnlineShoppingModel.Tbl_Payment" Role="Tbl_Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Members">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tbl_Payment">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Payment_Tbl_Product">
+    <End Type="dbMyOnlineShoppingModel.Tbl_Product" Role="Tbl_Product" Multiplicity="0..1" />
+    <End Type="dbMyOnlineShoppingModel.Tbl_Payment" Role="Tbl_Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Tbl_Payment">
+        <PropertyRef Name="ProductId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

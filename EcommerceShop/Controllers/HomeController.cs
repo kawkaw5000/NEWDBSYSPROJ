@@ -52,10 +52,31 @@ namespace EcommerceShop.Controllers
         public ActionResult UserIndex(string search, int? page)
         {
 
-            HomeIndexViewModel model = new HomeIndexViewModel();
+            var products = _unitOfWork.GetRepositoryInstance<Tbl_Product>().GetProduct().Where(p => !(p.IsDelete ?? false));
+
+
+            // Optionally, apply additional filtering based on search criteria
+            if (!string.IsNullOrEmpty(search))
+            {
+                products = products.Where(p => p.ProductName.Contains(search));
+            }
+
+            // Paginate the products
+            int pageSize = 4; // Adjust the page size as needed
+            int pageNumber = (page ?? 1);
+            var paginatedProducts = products.ToPagedList(pageNumber, pageSize);
+
+            // Construct the view model
+            var viewModel = new HomeIndexViewModel
+            {
+                ListOfProducts = paginatedProducts,
+                // Other properties of the view model
+            };
+
             ViewBag.CartItemCount = GetCartItemCount();
             ViewBag.TestMessage = $"Cart item count: {ViewBag.CartItemCount}";
-            return View(model.CreateModel(search, 4, page));
+
+            return View(viewModel);
         }
 
         private int GetCartItemCount()
@@ -396,10 +417,36 @@ namespace EcommerceShop.Controllers
             _unitOfWork.GetRepositoryInstance<Tbl_MemberInfo>().Add(tbl);
             return RedirectToAction("Index");
         }
-        public ActionResult AddUserInfod()
+
+        public ActionResult ViewProductDetails(int productId)
         {
-            return View();
+       
+            var product = _unitOfWork.GetRepositoryInstance<Tbl_Product>().GetFirstorDefault(productId);
+
+       
+            Tbl_Members seller = null;
+            Tbl_Brand brand = null;
+          
+            if (product.MemberId != null)
+            {
+                seller = _unitOfWork.GetRepositoryInstance<Tbl_Members>().GetFirstorDefault(product.MemberId.Value);
+            }
+
+            if (product.BrandId != null)
+            {
+                brand = _unitOfWork.GetRepositoryInstance<Tbl_Brand>().GetFirstorDefault(product.BrandId.Value);
+            }
+      
+            var viewModel = new ProductDetailsViewModel
+            {
+                Product = product,
+                Seller = seller,
+                Brand = brand
+            };
+    
+            return View(viewModel);
         }
+
 
     }
 }

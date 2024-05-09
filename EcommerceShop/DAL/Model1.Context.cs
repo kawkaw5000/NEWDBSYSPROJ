@@ -61,6 +61,8 @@ public partial class dbMyOnlineShoppingEntities : DbContext
 
     public virtual DbSet<Tbl_Product> Tbl_Product { get; set; }
 
+    public virtual DbSet<Tbl_Payment> Tbl_Payment { get; set; }
+
 
     public virtual ObjectResult<GetBySearch_Result> GetBySearch(string search)
     {

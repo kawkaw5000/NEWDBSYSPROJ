@@ -256,6 +256,9 @@
     <Compile Include="DAL\Tbl_Members.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Tbl_Payment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Tbl_Product.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -281,6 +284,7 @@
     <Compile Include="Models\Home\CartViewModel.cs" />
     <Compile Include="Models\Home\HomeIndexViewModel.cs" />
     <Compile Include="Models\Home\Item.cs" />
+    <Compile Include="Models\Home\ProductDetailsViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Shopping.cs" />
     <Compile Include="Models\UserLogged.cs" />
@@ -302,6 +306,7 @@
     <Content Include="Content\Login.css" />
     <Content Include="Content\MyMainLayOut.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\ProductDetails.css" />
     <Content Include="DAL\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -393,6 +398,7 @@
     <Content Include="Views\Home\ViewCart.cshtml" />
     <Content Include="Views\Admin\Brand.cshtml" />
     <Content Include="Views\Admin\AddBrand.cshtml" />
+    <Content Include="Views\Home\ViewProductDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminStyle\css\" />

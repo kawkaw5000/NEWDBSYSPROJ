@@ -31,6 +31,9 @@
         <AssociationConnector Association="dbMyOnlineShoppingModel.FK__Tbl_Produ__Categ__145C0A3F" />
         <AssociationConnector Association="dbMyOnlineShoppingModel.FK_MemberId" />
         <AssociationConnector Association="dbMyOnlineShoppingModel.FK_ProdStoreId" />
+        <EntityTypeShape EntityType="dbMyOnlineShoppingModel.Tbl_Payment" Width="1.5" PointX="11.75" PointY="3.375" />
+        <AssociationConnector Association="dbMyOnlineShoppingModel.FK_Tbl_Payment_Tbl_Members" />
+        <AssociationConnector Association="dbMyOnlineShoppingModel.FK_Tbl_Payment_Tbl_Product" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
