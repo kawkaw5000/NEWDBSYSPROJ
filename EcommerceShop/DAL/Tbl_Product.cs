@@ -24,8 +24,6 @@ public partial class Tbl_Product
 
         this.Tbl_Cart = new HashSet<Tbl_Cart>();
 
-        this.Tbl_Payment = new HashSet<Tbl_Payment>();
-
     }
 
 
@@ -72,10 +70,6 @@ public partial class Tbl_Product
     public virtual Tbl_Members Tbl_Members { get; set; }
 
     public virtual Tbl_Store Tbl_Store { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<Tbl_Payment> Tbl_Payment { get; set; }
 
 }
 

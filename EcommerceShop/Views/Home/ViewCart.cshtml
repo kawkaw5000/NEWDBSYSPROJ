@@ -15,6 +15,7 @@
                 <th>Product Image</th>
                 <th>Description</th>
                 <th>Quantity</th>
+                <th>Price</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -26,6 +27,7 @@
                     <td><img src="~/ProductImg/@item.Tbl_Product.ProductImage" alt="@item.Tbl_Product.ProductName" width="100" height="100"></td>
                     <td>@item.Tbl_Product.Description</td>
                     <td>@item.Quantity</td>
+                    <td>PHP @String.Format("{0:N2}", @item.Tbl_Product.Price * @item.Quantity)</td>                 
                     <td>
                         <!-- Button for increasing quantity -->
                         <form action="@Url.Action("IncreaseProductQuant", "Home")" method="post">

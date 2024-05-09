@@ -68,15 +68,15 @@
                 </div>
                 <div class="details col-md-6">
                     <h3 class="product-title">@Model.Product.ProductName</h3>
-                    <p class="product-description">@Model.Product.Description</p>
-                    <h4 class="price">Price: PHP @String.Format("{0:N2}", Model.Product.Price)</h4>                      
-                    <h4 class="price">Quantity Available: @Model.Product.Quantity</h4>  
+                    <h4 class="product-description">Description: @Model.Product.Description</h4>
+                    <h4 class="price">Price: PHP @String.Format("{0:N2}", Model.Product.Price)</h4>
+                    <h4 class="price">Quantity Available: @Model.Product.Quantity</h4>
                     @if (Model.Brand != null)
-                    {                   
+                    {
                         <h4 class="price">Brand Name: @Model.Brand.BrandName</h4>
                     }
                     @if (Model.Seller != null)
-                    {                       
+                    {
                         <h4 class="price">Store Name: @Model.Seller.Username</h4>
                     }
 
@@ -96,7 +96,7 @@
                             <p><strong>Status:</strong> Out of Stock</p>
                         }
                     </div>
-                                    
+
                 </div>
             </div>
         </div>

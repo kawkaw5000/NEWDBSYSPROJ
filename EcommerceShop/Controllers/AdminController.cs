@@ -265,6 +265,11 @@ namespace EcommerceShop.Controllers
             _unitOfWork.GetRepositoryInstance<Tbl_Product>().Add(tbl);
             return RedirectToAction("Product");
         }
+
+        public ActionResult Store()
+        {
+            return View();
+        }
        
     }
 }

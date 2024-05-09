@@ -256,9 +256,6 @@
     <Compile Include="DAL\Tbl_Members.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL\Tbl_Payment.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="DAL\Tbl_Product.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

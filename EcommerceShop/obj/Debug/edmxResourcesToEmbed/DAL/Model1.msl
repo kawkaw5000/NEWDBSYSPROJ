@@ -117,42 +117,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Tbl_ShippingDetails">
-      <EntityTypeMapping TypeName="dbMyOnlineShoppingModel.Tbl_ShippingDetails">
-        <MappingFragment StoreEntitySet="Tbl_ShippingDetails">
-          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
-          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
-          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
-          <ScalarProperty Name="Country" ColumnName="Country" />
-          <ScalarProperty Name="State" ColumnName="State" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
-          <ScalarProperty Name="ShippingDetailId" ColumnName="ShippingDetailId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Tbl_SlideImage">
       <EntityTypeMapping TypeName="dbMyOnlineShoppingModel.Tbl_SlideImage">
         <MappingFragment StoreEntitySet="Tbl_SlideImage">
           <ScalarProperty Name="SlideImage" ColumnName="SlideImage" />
           <ScalarProperty Name="SlideTitle" ColumnName="SlideTitle" />
           <ScalarProperty Name="SlideId" ColumnName="SlideId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Tbl_Store">
-      <EntityTypeMapping TypeName="dbMyOnlineShoppingModel.Tbl_Store">
-        <MappingFragment StoreEntitySet="Tbl_Store">
-          <ScalarProperty Name="zip_code" ColumnName="zip_code" />
-          <ScalarProperty Name="states" ColumnName="states" />
-          <ScalarProperty Name="city" ColumnName="city" />
-          <ScalarProperty Name="street" ColumnName="street" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="phone" ColumnName="phone" />
-          <ScalarProperty Name="storeName" ColumnName="storeName" />
-          <ScalarProperty Name="storeGuid" ColumnName="storeGuid" />
-          <ScalarProperty Name="StoreId" ColumnName="StoreId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -208,15 +178,33 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Tbl_Payment">
-      <EntityTypeMapping TypeName="dbMyOnlineShoppingModel.Tbl_Payment">
-        <MappingFragment StoreEntitySet="Tbl_Payment">
-          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
-          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
-          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
-          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+    <EntitySetMapping Name="Tbl_Store">
+      <EntityTypeMapping TypeName="dbMyOnlineShoppingModel.Tbl_Store">
+        <MappingFragment StoreEntitySet="Tbl_Store">
           <ScalarProperty Name="MemberId" ColumnName="MemberId" />
-          <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+          <ScalarProperty Name="zip_code" ColumnName="zip_code" />
+          <ScalarProperty Name="states" ColumnName="states" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="storeName" ColumnName="storeName" />
+          <ScalarProperty Name="storeGuid" ColumnName="storeGuid" />
+          <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_ShippingDetails">
+      <EntityTypeMapping TypeName="dbMyOnlineShoppingModel.Tbl_ShippingDetails">
+        <MappingFragment StoreEntitySet="Tbl_ShippingDetails">
+          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="ShippingDetailId" ColumnName="ShippingDetailId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

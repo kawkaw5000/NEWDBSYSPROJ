@@ -34,8 +34,6 @@ public partial class Tbl_ShippingDetails
 
     public Nullable<decimal> AmountPaid { get; set; }
 
-    public string PaymentType { get; set; }
-
 
 
     public virtual Tbl_Members Tbl_Members { get; set; }
