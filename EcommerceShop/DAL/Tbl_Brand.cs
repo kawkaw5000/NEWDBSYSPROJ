@@ -18,6 +18,15 @@ using System;
 public partial class Tbl_Brand
 {
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Tbl_Brand()
+    {
+
+        this.Tbl_Product = new HashSet<Tbl_Product>();
+
+    }
+
+
     public int BrandId { get; set; }
 
     public string BrandName { get; set; }
@@ -31,6 +40,10 @@ public partial class Tbl_Brand
 
 
     public virtual Tbl_Members Tbl_Members { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Tbl_Product> Tbl_Product { get; set; }
 
 }
 

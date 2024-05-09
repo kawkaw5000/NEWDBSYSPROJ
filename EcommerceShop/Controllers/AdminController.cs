@@ -40,19 +40,19 @@ namespace EcommerceShop.Controllers
 
             return categories;
         }
+        public List<Tbl_Brand> GetBrand()
+        {
+
+            int memberId = GetCurrentMemberId();
 
 
+            var brand = _unitOfWork.GetRepositoryInstance<Tbl_Brand>()
+                .GetAllRecords()
+                .Where(c => c.MemberId == memberId && !c.IsDelete.GetValueOrDefault())
+                .ToList();
 
-        //public List<SelectListItem> GetCategory()
-        //{
-        //    List<SelectListItem> list = new List<SelectListItem>();
-        //    var cat = _unitOfWork.GetRepositoryInstance<Tbl_Category>().GetAllRecords().Where(c => !c.IsDelete.GetValueOrDefault());
-        //    foreach (var item in cat)
-        //    {
-        //        list.Add(new SelectListItem { Value = item.CategoryId.ToString(), Text = item.CategoryName });
-        //    }
-        //    return list;
-        //}
+            return brand;
+        }
 
         public ActionResult Dashboard()
         {
@@ -119,12 +119,6 @@ namespace EcommerceShop.Controllers
 
             return View(userCategories);
         }
-        //public ActionResult Categories()
-        //{
-        //    int memberId = GetCurrentMemberId();
-        //    List<Tbl_Category> AllCategories = _unitOfWork.GetRepositoryInstance<Tbl_Category>().GetAllRecordsIQueryable().Where(i => i.IsDelete == false).ToList();
-        //    return View(AllCategories);
-        //}
 
         public ActionResult AddCategory()
         {
@@ -133,22 +127,6 @@ namespace EcommerceShop.Controllers
             ViewBag.CategoryList = new SelectList(categories, "CategoryId", "CategoryName");
             return View();
         }
-
-        //public ActionResult AddCategory()
-        //{
-        //    // Retrieve the currently logged-in user's ID
-        //    int memberId = GetCurrentMemberId(); // Implement this method to get the member ID
-
-        //    // Filter categories based on the logged-in user
-        //    List<Tbl_Category> userCategories = _unitOfWork.GetRepositoryInstance<Tbl_Category>()
-        //        .GetAllRecords()
-        //        .Where(c => c.MemberId == memberId && !c.IsDelete.GetValueOrDefault())
-        //        .ToList();
-
-        //    ViewBag.CategoryList = userCategories;
-        //    return View();
-        //}
-
 
         [HttpPost]
         public ActionResult AddCategory(Tbl_Category tbl)
@@ -163,15 +141,6 @@ namespace EcommerceShop.Controllers
             _unitOfWork.SaveChanges();
             return RedirectToAction("Categories");
         }
-
-        //[HttpPost]
-        //public ActionResult AddCategory(Tbl_Category tbl)
-        //{
-        //    int memberId = GetCurrentMemberId();
-        //    _unitOfWork.GetRepositoryInstance<Tbl_Category>().Add(tbl);
-        //    return RedirectToAction("Categories");
-
-        //}
 
         public ActionResult CategoryEdit(int catId)
         {
@@ -202,6 +171,42 @@ namespace EcommerceShop.Controllers
             }
         }
 
+        public ActionResult Brand()
+        {
+
+            int memberId = GetCurrentMemberId();
+
+
+            List<Tbl_Brand> userBrand = _unitOfWork.GetRepositoryInstance<Tbl_Brand>()
+                .GetAllRecords()
+                .Where(c => c.MemberId == memberId && !c.IsDelete.GetValueOrDefault())
+                .ToList();
+
+            return View(userBrand);
+        }
+
+        public ActionResult AddBrand()
+        {
+            var brand = GetBrand();
+
+            ViewBag.BrandList = new SelectList(brand, "BrandId", "BrandName");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddBrand(Tbl_Brand tbl)
+        {
+
+            int memberId = GetCurrentMemberId();
+
+
+            tbl.MemberId = memberId;
+
+            _unitOfWork.GetRepositoryInstance<Tbl_Brand>().Add(tbl);
+            _unitOfWork.SaveChanges();
+            return RedirectToAction("Brand");
+        }
+
         // ADMIN PRODUCT EDIT------------------------------------------------------------
         public ActionResult Product()
         { 
@@ -213,16 +218,6 @@ namespace EcommerceShop.Controllers
 
             return View(products);
         }
-        //            public ActionResult Product()
-        //{
-        //            // Filter out products with IsDelete = true
-        //            var products = _unitOfWork.GetRepositoryInstance<Tbl_Product>().GetProduct().Where(p => !(p.IsDelete ?? false));
-        //            return View(products);
-        //}
-        //public ActionResult Product()
-        //{
-        //    return View(_unitOfWork.GetRepositoryInstance<Tbl_Product>().GetProduct());
-        //}
 
         public ActionResult ProductEdit(int productId)
         {
@@ -247,6 +242,7 @@ namespace EcommerceShop.Controllers
         public ActionResult ProductAdd()
         {
             ViewBag.CategoryList = new SelectList(GetCategories(), "CategoryId", "CategoryName");
+            ViewBag.BrandList = new SelectList(GetBrand(), "BrandId", "BrandName");
             return View();
         }
         [HttpPost]
@@ -269,22 +265,6 @@ namespace EcommerceShop.Controllers
             _unitOfWork.GetRepositoryInstance<Tbl_Product>().Add(tbl);
             return RedirectToAction("Product");
         }
-
-        //[HttpPost]
-        //public ActionResult ProductAdd(Tbl_Product tbl, HttpPostedFileBase file)
-        //{
-        //    string pic = null;
-        //    if (file != null)
-        //    {
-        //        pic = System.IO.Path.GetFileName(file.FileName);
-        //        string path = System.IO.Path.Combine(Server.MapPath("~/ProductImg/"), pic);
-        //        file.SaveAs(path);
-        //    }
-        //    tbl.ProductImage = pic;
-        //    tbl.CreatedDate = DateTime.Now;
-        //    _unitOfWork.GetRepositoryInstance<Tbl_Product>().Add(tbl);
-        //    return RedirectToAction("Product");
-        //}
 
     }
 }

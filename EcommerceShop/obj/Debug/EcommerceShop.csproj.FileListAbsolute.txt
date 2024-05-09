@@ -511,6 +511,6 @@ C:\Users\LEX\Documents\Visual Studio 2015\Projects\DBProj\DBSYS_PROJ-main\Ecomme
 C:\Users\LEX\Documents\Visual Studio 2015\Projects\DBProj\DBSYS_PROJ-main\EcommerceShop\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\LEX\Documents\Visual Studio 2015\Projects\DBProj\DBSYS_PROJ-main\EcommerceShop\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\LEX\Documents\Visual Studio 2015\Projects\DBProj\DBSYS_PROJ-main\EcommerceShop\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\LEX\Documents\Visual Studio 2015\Projects\DBProj\DBSYS_PROJ-main\EcommerceShop\obj\Debug\EcommerceShop.csprojResolveAssemblyReference.cache
 C:\Users\LEX\Documents\Visual Studio 2015\Projects\DBProj\DBSYS_PROJ-main\EcommerceShop\obj\Debug\EcommerceShop.dll
 C:\Users\LEX\Documents\Visual Studio 2015\Projects\DBProj\DBSYS_PROJ-main\EcommerceShop\obj\Debug\EcommerceShop.pdb
+C:\Users\LEX\Documents\Visual Studio 2015\Projects\DBProj\DBSYS_PROJ-main\EcommerceShop\obj\Debug\EcommerceShop.csprojResolveAssemblyReference.cache

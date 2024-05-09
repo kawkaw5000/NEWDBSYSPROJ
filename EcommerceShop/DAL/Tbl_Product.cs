@@ -55,17 +55,21 @@ public partial class Tbl_Product
 
     public Nullable<int> MemberId { get; set; }
 
+    public Nullable<int> BrandId { get; set; }
 
+
+
+    public virtual Tbl_Brand Tbl_Brand { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<Tbl_Cart> Tbl_Cart { get; set; }
 
+    public virtual Tbl_Category Tbl_Category { get; set; }
+
     public virtual Tbl_Members Tbl_Members { get; set; }
 
     public virtual Tbl_Store Tbl_Store { get; set; }
-
-    public virtual Tbl_Category Tbl_Category { get; set; }
 
 }
 

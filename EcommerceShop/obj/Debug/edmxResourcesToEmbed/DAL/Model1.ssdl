@@ -10,13 +10,11 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'dbMyOnlineShopping.dbo.Tbl_Brand' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Tbl_Brand">
     <Key>
       <PropertyRef Name="BrandId" />
     </Key>
-    <Property Name="BrandId" Type="int" Nullable="false" />
+    <Property Name="BrandId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="BrandName" Type="varchar" MaxLength="500" />
     <Property Name="IsActive" Type="bit" />
     <Property Name="IsDelete" Type="bit" />
@@ -98,6 +96,7 @@ warning 6002: The table/view 'dbMyOnlineShopping.dbo.Tbl_Brand' does not have a 
     <Property Name="Description" Type="varchar" MaxLength="500" />
     <Property Name="StoreId" Type="int" />
     <Property Name="MemberId" Type="int" />
+    <Property Name="BrandId" Type="int" />
   </EntityType>
   <EntityType Name="Tbl_Roles">
     <Key>
@@ -197,6 +196,18 @@ warning 6002: The table/view 'dbMyOnlineShopping.dbo.vw_UserRole' does not have 
       </Principal>
       <Dependent Role="Tbl_ShippingDetails">
         <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BrandId">
+    <End Role="Tbl_Brand" Type="Self.Tbl_Brand" Multiplicity="0..1" />
+    <End Role="Tbl_Product" Type="Self.Tbl_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Brand">
+        <PropertyRef Name="BrandId" />
+      </Principal>
+      <Dependent Role="Tbl_Product">
+        <PropertyRef Name="BrandId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -332,6 +343,7 @@ warning 6002: The table/view 'dbMyOnlineShopping.dbo.vw_UserRole' does not have 
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="dbMyOnlineShoppingModelStoreContainer">
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Brand" EntityType="Self.Tbl_Brand" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_Cart" EntityType="Self.Tbl_Cart" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_CartStatus" EntityType="Self.Tbl_CartStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_Category" EntityType="Self.Tbl_Category" Schema="dbo" store:Type="Tables" />
@@ -342,15 +354,6 @@ warning 6002: The table/view 'dbMyOnlineShopping.dbo.vw_UserRole' does not have 
     <EntitySet Name="Tbl_ShippingDetails" EntityType="Self.Tbl_ShippingDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_SlideImage" EntityType="Self.Tbl_SlideImage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_Store" EntityType="Self.Tbl_Store" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Tbl_Brand" EntityType="Self.Tbl_Brand" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Tbl_Brand].[BrandId] AS [BrandId], 
-    [Tbl_Brand].[BrandName] AS [BrandName], 
-    [Tbl_Brand].[IsActive] AS [IsActive], 
-    [Tbl_Brand].[IsDelete] AS [IsDelete], 
-    [Tbl_Brand].[MemberId] AS [MemberId]
-    FROM [dbo].[Tbl_Brand] AS [Tbl_Brand]</DefiningQuery>
-    </EntitySet>
     <EntitySet Name="vw_UserRole" EntityType="Self.vw_UserRole" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [vw_UserRole].[id] AS [id], 
@@ -373,6 +376,10 @@ warning 6002: The table/view 'dbMyOnlineShopping.dbo.vw_UserRole' does not have 
     <AssociationSet Name="FK__Tbl_Shipp__Membe__1CF15040" Association="Self.FK__Tbl_Shipp__Membe__1CF15040">
       <End Role="Tbl_Members" EntitySet="Tbl_Members" />
       <End Role="Tbl_ShippingDetails" EntitySet="Tbl_ShippingDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BrandId" Association="Self.FK_BrandId">
+      <End Role="Tbl_Brand" EntitySet="Tbl_Brand" />
+      <End Role="Tbl_Product" EntitySet="Tbl_Product" />
     </AssociationSet>
     <AssociationSet Name="FK_CatMemberId" Association="Self.FK_CatMemberId">
       <End Role="Tbl_Members" EntitySet="Tbl_Members" />
