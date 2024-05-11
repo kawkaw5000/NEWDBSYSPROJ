@@ -340,6 +340,10 @@ namespace EcommerceShop.Controllers
             ViewBag.MembersList = GetMembers(User.Identity.Name);
             return RedirectToAction("UserIndex");
         }
+
+
+
+
         public List<SelectListItem> GetMembersInfo()
         {
             List<SelectListItem> list = new List<SelectListItem>();

@@ -26,12 +26,12 @@
         <AssociationConnector Association="dbMyOnlineShoppingModel.FK__Tbl_Cart__Produc__25869641" />
         <AssociationConnector Association="dbMyOnlineShoppingModel.FK__Tbl_Produ__Categ__145C0A3F" />
         <AssociationConnector Association="dbMyOnlineShoppingModel.FK_MemberId" />
-        <EntityTypeShape EntityType="dbMyOnlineShoppingModel.Tbl_Store" Width="1.5" PointX="10.25" PointY="14.75" />
+        <EntityTypeShape EntityType="dbMyOnlineShoppingModel.Tbl_ShippingDetails" Width="1.5" PointX="5.25" PointY="14.625" />
+        <AssociationConnector Association="dbMyOnlineShoppingModel.FK__Tbl_Shipp__Membe__1CF15040" />
+        <EntityTypeShape EntityType="dbMyOnlineShoppingModel.Tbl_Store" Width="1.5" PointX="5.25" PointY="18.25" />
         <AssociationConnector Association="dbMyOnlineShoppingModel.FK_StoreId" />
         <AssociationConnector Association="dbMyOnlineShoppingModel.FK_Tbl_Store_Tbl_Members" />
         <AssociationConnector Association="dbMyOnlineShoppingModel.FK_ProdStoreId" />
-        <EntityTypeShape EntityType="dbMyOnlineShoppingModel.Tbl_ShippingDetails" Width="1.5" PointX="5.25" PointY="14.625" />
-        <AssociationConnector Association="dbMyOnlineShoppingModel.FK__Tbl_Shipp__Membe__1CF15040" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

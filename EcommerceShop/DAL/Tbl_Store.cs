@@ -31,8 +31,6 @@ public partial class Tbl_Store
 
     public int StoreId { get; set; }
 
-    public string storeGuid { get; set; }
-
     public string storeName { get; set; }
 
     public string phone { get; set; }
@@ -48,6 +46,10 @@ public partial class Tbl_Store
     public string zip_code { get; set; }
 
     public Nullable<int> MemberId { get; set; }
+
+    public Nullable<bool> IsActive { get; set; }
+
+    public Nullable<bool> IsDelete { get; set; }
 
 
 

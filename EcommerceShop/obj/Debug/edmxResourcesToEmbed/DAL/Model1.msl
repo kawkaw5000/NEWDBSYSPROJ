@@ -178,22 +178,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Tbl_Store">
-      <EntityTypeMapping TypeName="dbMyOnlineShoppingModel.Tbl_Store">
-        <MappingFragment StoreEntitySet="Tbl_Store">
-          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
-          <ScalarProperty Name="zip_code" ColumnName="zip_code" />
-          <ScalarProperty Name="states" ColumnName="states" />
-          <ScalarProperty Name="city" ColumnName="city" />
-          <ScalarProperty Name="street" ColumnName="street" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="phone" ColumnName="phone" />
-          <ScalarProperty Name="storeName" ColumnName="storeName" />
-          <ScalarProperty Name="storeGuid" ColumnName="storeGuid" />
-          <ScalarProperty Name="StoreId" ColumnName="StoreId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Tbl_ShippingDetails">
       <EntityTypeMapping TypeName="dbMyOnlineShoppingModel.Tbl_ShippingDetails">
         <MappingFragment StoreEntitySet="Tbl_ShippingDetails">
@@ -205,6 +189,23 @@
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="MemberId" ColumnName="MemberId" />
           <ScalarProperty Name="ShippingDetailId" ColumnName="ShippingDetailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Store">
+      <EntityTypeMapping TypeName="dbMyOnlineShoppingModel.Tbl_Store">
+        <MappingFragment StoreEntitySet="Tbl_Store">
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="zip_code" ColumnName="zip_code" />
+          <ScalarProperty Name="states" ColumnName="states" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="storeName" ColumnName="storeName" />
+          <ScalarProperty Name="StoreId" ColumnName="StoreId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

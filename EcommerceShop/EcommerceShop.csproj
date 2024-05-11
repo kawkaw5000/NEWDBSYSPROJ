@@ -396,6 +396,7 @@
     <Content Include="Views\Admin\Brand.cshtml" />
     <Content Include="Views\Admin\AddBrand.cshtml" />
     <Content Include="Views\Home\ViewProductDetails.cshtml" />
+    <Content Include="Views\Admin\BrandEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminStyle\css\" />

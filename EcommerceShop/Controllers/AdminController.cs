@@ -54,6 +54,20 @@ namespace EcommerceShop.Controllers
             return brand;
         }
 
+        public List<Tbl_Store> GetStore()
+        {
+
+            int memberId = GetCurrentMemberId();
+
+
+            var store = _unitOfWork.GetRepositoryInstance<Tbl_Store>()
+                .GetAllRecords()
+                .Where(c => c.MemberId == memberId && !c.IsDelete.GetValueOrDefault())
+                .ToList();
+
+            return store;
+        }
+
         public ActionResult Dashboard()
         {
             return View();
@@ -144,14 +158,38 @@ namespace EcommerceShop.Controllers
 
         public ActionResult CategoryEdit(int catId)
         {
-            return View(_unitOfWork.GetRepositoryInstance<Tbl_Category>().GetFirstorDefault(catId));
+            int memberId = GetCurrentMemberId();
+
+            var category = _unitOfWork.GetRepositoryInstance<Tbl_Category>().GetAllRecords().FirstOrDefault(p => p.CategoryId == catId && p.MemberId == memberId);
+            if (category == null)
+            {
+                return HttpNotFound();
+            }
+            return View(category);
         }
+
         [HttpPost]
         public ActionResult CategoryEdit(Tbl_Category tbl)
         {
-            _unitOfWork.GetRepositoryInstance<Tbl_Category>().Update(tbl);
+            int memberId = GetCurrentMemberId();
+
+        
+            var existingCategory = _unitOfWork.GetRepositoryInstance<Tbl_Category>().GetFirstorDefault(tbl.CategoryId);
+            if (existingCategory == null || existingCategory.MemberId != memberId)
+            {
+                return HttpNotFound(); 
+            }
+
+            existingCategory.CategoryName = tbl.CategoryName;
+
+
+            _unitOfWork.GetRepositoryInstance<Tbl_Category>().Update(existingCategory);
+            _unitOfWork.SaveChanges(); 
+
             return RedirectToAction("Categories");
         }
+
+        
 
         private int GetCurrentMemberId()
         {    
@@ -207,6 +245,40 @@ namespace EcommerceShop.Controllers
             return RedirectToAction("Brand");
         }
 
+        public ActionResult BrandEdit(int brandId)
+        {
+            int memberId = GetCurrentMemberId(); 
+
+            var brand = _unitOfWork.GetRepositoryInstance<Tbl_Brand>().GetAllRecords().FirstOrDefault(p => p.BrandId == brandId && p.MemberId == memberId);
+            if (brand == null)
+            {
+                return HttpNotFound();
+            }
+            return View(brand);
+        }
+
+        [HttpPost]
+        public ActionResult BrandEdit(Tbl_Brand tbl)
+        {
+            int memberId = GetCurrentMemberId();
+
+     
+            var existingBrand = _unitOfWork.GetRepositoryInstance<Tbl_Brand>().GetFirstorDefault(tbl.BrandId);
+            if (existingBrand == null || existingBrand.MemberId != memberId)
+            {
+                return HttpNotFound(); 
+            }
+
+            existingBrand.BrandName = tbl.BrandName;
+    
+      
+            _unitOfWork.GetRepositoryInstance<Tbl_Brand>().Update(existingBrand);
+            _unitOfWork.SaveChanges();
+
+            return RedirectToAction("Brand");
+        }
+
+
         // ADMIN PRODUCT EDIT------------------------------------------------------------
         public ActionResult Product()
         { 
@@ -221,12 +293,30 @@ namespace EcommerceShop.Controllers
 
         public ActionResult ProductEdit(int productId)
         {
+            int memberId = GetCurrentMemberId();
+
             ViewBag.CategoryList = new SelectList(GetCategories(), "CategoryId", "CategoryName");
-            return View(_unitOfWork.GetRepositoryInstance<Tbl_Product>().GetFirstorDefault(productId));
+            ViewBag.BrandList = new SelectList(GetBrand(), "BrandId", "BrandName");
+            var product = _unitOfWork.GetRepositoryInstance<Tbl_Product>().GetAllRecords().FirstOrDefault(p => p.ProductId == productId && p.MemberId == memberId);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
         }
+
         [HttpPost]
         public ActionResult ProductEdit(Tbl_Product tbl, HttpPostedFileBase file)
         {
+            int memberId = GetCurrentMemberId();
+
+    
+            var existingProduct = _unitOfWork.GetRepositoryInstance<Tbl_Product>().GetFirstorDefault(tbl.ProductId);
+            if (existingProduct == null || existingProduct.MemberId != memberId)
+            {
+                return HttpNotFound();
+            }
+
             string pic = null;
             if (file != null)
             {
@@ -234,11 +324,28 @@ namespace EcommerceShop.Controllers
                 string path = System.IO.Path.Combine(Server.MapPath("~/ProductImg/"), pic);
                 file.SaveAs(path);
             }
-            tbl.ProductImage = file != null ? pic : tbl.ProductImage;
-            tbl.ModifiedDate = DateTime.Now;
-            _unitOfWork.GetRepositoryInstance<Tbl_Product>().Update(tbl);
+            existingProduct.ProductName = tbl.ProductName;
+            existingProduct.Description = tbl.Description;
+            existingProduct.Price = tbl.Price;
+            existingProduct.BrandId = tbl.BrandId;
+            existingProduct.Quantity = tbl.Quantity;
+            existingProduct.CategoryId = tbl.CategoryId;
+            existingProduct.IsFeatured = tbl.IsFeatured;
+
+        
+            if (file != null)
+            {
+                existingProduct.ProductImage = pic;
+            }
+
+            existingProduct.ModifiedDate = DateTime.Now;
+            _unitOfWork.GetRepositoryInstance<Tbl_Product>().Update(existingProduct);
+            _unitOfWork.SaveChanges();
+
             return RedirectToAction("Product");
         }
+
+
         public ActionResult ProductAdd()
         {
             ViewBag.CategoryList = new SelectList(GetCategories(), "CategoryId", "CategoryName");

@@ -131,7 +131,6 @@
       <PropertyRef Name="StoreId" />
     </Key>
     <Property Name="StoreId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="storeGuid" Type="varchar(max)" />
     <Property Name="storeName" Type="varchar" MaxLength="500" />
     <Property Name="phone" Type="varchar" MaxLength="500" />
     <Property Name="email" Type="varchar" MaxLength="500" />
@@ -140,6 +139,8 @@
     <Property Name="states" Type="varchar" MaxLength="500" />
     <Property Name="zip_code" Type="varchar" MaxLength="50" />
     <Property Name="MemberId" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'dbMyOnlineShopping.dbo.vw_UserRole' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
