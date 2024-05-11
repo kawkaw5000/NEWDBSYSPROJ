@@ -212,6 +212,8 @@ namespace EcommerceShop.Controllers
             }
         }
 
+
+
         public ActionResult Brand()
         {
 
@@ -385,8 +387,80 @@ namespace EcommerceShop.Controllers
 
         public ActionResult Store()
         {
+
+            int memberId = GetCurrentMemberId();
+
+
+            List<Tbl_Store> userStore = _unitOfWork.GetRepositoryInstance<Tbl_Store>()
+                .GetAllRecords()
+                .Where(c => c.MemberId == memberId && !c.IsDelete.GetValueOrDefault())
+                .ToList();
+
+            return View(userStore);
+        }
+
+        public ActionResult AddStore()
+        {
+            var store = GetStore();
+
+            ViewBag.BrandList = new SelectList(store, "StoreId", "StoreName");
             return View();
         }
-       
+
+        [HttpPost]
+        public ActionResult AddStore(Tbl_Store tbl)
+        {
+
+            int memberId = GetCurrentMemberId();
+
+
+            tbl.MemberId = memberId;
+            tbl.IsActive = true;
+            tbl.IsDelete = false;
+            _unitOfWork.GetRepositoryInstance<Tbl_Store>().Add(tbl);
+            _unitOfWork.SaveChanges();
+            return RedirectToAction("Store");
+        }
+
+        public ActionResult StoreEdit(int storeId)
+        {
+            int memberId = GetCurrentMemberId();
+
+            var store = _unitOfWork.GetRepositoryInstance<Tbl_Store>().GetAllRecords().FirstOrDefault(p => p.StoreId == storeId && p.MemberId == memberId);
+            if (store == null)
+            {
+                return HttpNotFound();
+            }
+            return View(store);
+        }
+
+        [HttpPost]
+        public ActionResult StoreEdit(Tbl_Store tbl)
+        {
+            int memberId = GetCurrentMemberId();
+
+
+            var existingStore = _unitOfWork.GetRepositoryInstance<Tbl_Store>().GetFirstorDefault(tbl.StoreId);
+            if (existingStore == null || existingStore.MemberId != memberId)
+            {
+                return HttpNotFound();
+            }
+
+            existingStore.storeName = tbl.storeName;
+            existingStore.phone = tbl.phone;
+            existingStore.email = tbl.email;
+            existingStore.street = tbl.street;
+            existingStore.city = tbl.city;
+            existingStore.states = tbl.states;
+            existingStore.zip_code = tbl.zip_code;
+            existingStore.IsActive = tbl.IsActive;
+            existingStore.IsDelete = tbl.IsDelete;
+
+
+            _unitOfWork.GetRepositoryInstance<Tbl_Store>().Update(existingStore);
+            _unitOfWork.SaveChanges();
+
+            return RedirectToAction("Store");
+        }
     }
 }

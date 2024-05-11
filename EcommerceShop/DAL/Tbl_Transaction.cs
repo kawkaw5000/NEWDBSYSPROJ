@@ -15,34 +15,26 @@ namespace EcommerceShop.DAL
 using System;
     using System.Collections.Generic;
     
-public partial class Tbl_MemberInfo
+public partial class Tbl_Transaction
 {
 
-    public int id { get; set; }
+    public int TransactionId { get; set; }
 
     public Nullable<int> MemberId { get; set; }
 
-    public string FirstName { get; set; }
-
-    public string LastName { get; set; }
-
-    public string Phone { get; set; }
-
-    public string Street { get; set; }
-
-    public string City { get; set; }
-
-    public string ZipCode { get; set; }
-
-    public string UserImage { get; set; }
-
     public Nullable<int> StoreId { get; set; }
 
+    public Nullable<int> ProductId { get; set; }
+
+    public Nullable<int> Quantity { get; set; }
+
+    public Nullable<decimal> TotalAmount { get; set; }
+
+    public Nullable<System.DateTime> TimeStamp { get; set; }
 
 
-    public virtual Tbl_MemberInfo Tbl_MemberInfo1 { get; set; }
 
-    public virtual Tbl_MemberInfo Tbl_MemberInfo2 { get; set; }
+    public virtual Tbl_Product Tbl_Product { get; set; }
 
     public virtual Tbl_Store Tbl_Store { get; set; }
 

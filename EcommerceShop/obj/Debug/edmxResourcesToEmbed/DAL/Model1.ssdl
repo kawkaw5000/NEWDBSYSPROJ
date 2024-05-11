@@ -77,6 +77,7 @@
     <Property Name="CreatedOn" Type="datetime" />
     <Property Name="ModifiedOn" Type="datetime" />
     <Property Name="roleId" Type="int" />
+    <Property Name="StoreId" Type="int" />
   </EntityType>
   <EntityType Name="Tbl_Product">
     <Key>
@@ -141,6 +142,18 @@
     <Property Name="MemberId" Type="int" />
     <Property Name="IsActive" Type="bit" />
     <Property Name="IsDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="Tbl_Transaction">
+    <Key>
+      <PropertyRef Name="TransactionId" />
+    </Key>
+    <Property Name="TransactionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberId" Type="int" />
+    <Property Name="StoreId" Type="int" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="TimeStamp" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'dbMyOnlineShopping.dbo.vw_UserRole' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -308,6 +321,18 @@ warning 6002: The table/view 'dbMyOnlineShopping.dbo.vw_UserRole' does not have 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Tbl_Members_Tbl_Store">
+    <End Role="Tbl_Store" Type="Self.Tbl_Store" Multiplicity="0..1" />
+    <End Role="Tbl_Members" Type="Self.Tbl_Members" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Store">
+        <PropertyRef Name="StoreId" />
+      </Principal>
+      <Dependent Role="Tbl_Members">
+        <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Tbl_Store_Tbl_Members">
     <End Role="Tbl_Members" Type="Self.Tbl_Members" Multiplicity="0..1" />
     <End Role="Tbl_Store" Type="Self.Tbl_Store" Multiplicity="*" />
@@ -317,6 +342,42 @@ warning 6002: The table/view 'dbMyOnlineShopping.dbo.vw_UserRole' does not have 
       </Principal>
       <Dependent Role="Tbl_Store">
         <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Transaction_Tbl_Members">
+    <End Role="Tbl_Members" Type="Self.Tbl_Members" Multiplicity="0..1" />
+    <End Role="Tbl_Transaction" Type="Self.Tbl_Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Members">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tbl_Transaction">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Transaction_Tbl_Product">
+    <End Role="Tbl_Product" Type="Self.Tbl_Product" Multiplicity="0..1" />
+    <End Role="Tbl_Transaction" Type="Self.Tbl_Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Tbl_Transaction">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_Transaction_Tbl_Store">
+    <End Role="Tbl_Store" Type="Self.Tbl_Store" Multiplicity="0..1" />
+    <End Role="Tbl_Transaction" Type="Self.Tbl_Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Store">
+        <PropertyRef Name="StoreId" />
+      </Principal>
+      <Dependent Role="Tbl_Transaction">
+        <PropertyRef Name="StoreId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -367,6 +428,7 @@ warning 6002: The table/view 'dbMyOnlineShopping.dbo.vw_UserRole' does not have 
     <EntitySet Name="Tbl_ShippingDetails" EntityType="Self.Tbl_ShippingDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_SlideImage" EntityType="Self.Tbl_SlideImage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_Store" EntityType="Self.Tbl_Store" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Transaction" EntityType="Self.Tbl_Transaction" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="vw_UserRole" EntityType="Self.vw_UserRole" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [vw_UserRole].[id] AS [id], 
@@ -426,9 +488,25 @@ warning 6002: The table/view 'dbMyOnlineShopping.dbo.vw_UserRole' does not have 
       <End Role="Tbl_Roles" EntitySet="Tbl_Roles" />
       <End Role="Tbl_Members" EntitySet="Tbl_Members" />
     </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Members_Tbl_Store" Association="Self.FK_Tbl_Members_Tbl_Store">
+      <End Role="Tbl_Store" EntitySet="Tbl_Store" />
+      <End Role="Tbl_Members" EntitySet="Tbl_Members" />
+    </AssociationSet>
     <AssociationSet Name="FK_Tbl_Store_Tbl_Members" Association="Self.FK_Tbl_Store_Tbl_Members">
       <End Role="Tbl_Members" EntitySet="Tbl_Members" />
       <End Role="Tbl_Store" EntitySet="Tbl_Store" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Transaction_Tbl_Members" Association="Self.FK_Tbl_Transaction_Tbl_Members">
+      <End Role="Tbl_Members" EntitySet="Tbl_Members" />
+      <End Role="Tbl_Transaction" EntitySet="Tbl_Transaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Transaction_Tbl_Product" Association="Self.FK_Tbl_Transaction_Tbl_Product">
+      <End Role="Tbl_Product" EntitySet="Tbl_Product" />
+      <End Role="Tbl_Transaction" EntitySet="Tbl_Transaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_Transaction_Tbl_Store" Association="Self.FK_Tbl_Transaction_Tbl_Store">
+      <End Role="Tbl_Store" EntitySet="Tbl_Store" />
+      <End Role="Tbl_Transaction" EntitySet="Tbl_Transaction" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

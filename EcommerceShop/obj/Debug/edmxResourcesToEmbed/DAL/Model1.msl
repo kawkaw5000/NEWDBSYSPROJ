@@ -92,23 +92,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Tbl_Members">
-      <EntityTypeMapping TypeName="dbMyOnlineShoppingModel.Tbl_Members">
-        <MappingFragment StoreEntitySet="Tbl_Members">
-          <ScalarProperty Name="roleId" ColumnName="roleId" />
-          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-          <ScalarProperty Name="ConfirmPass" ColumnName="ConfirmPass" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="userId" ColumnName="userId" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Tbl_Roles">
       <EntityTypeMapping TypeName="dbMyOnlineShoppingModel.Tbl_Roles">
         <MappingFragment StoreEntitySet="Tbl_Roles">
@@ -206,6 +189,37 @@
           <ScalarProperty Name="phone" ColumnName="phone" />
           <ScalarProperty Name="storeName" ColumnName="storeName" />
           <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Transaction">
+      <EntityTypeMapping TypeName="dbMyOnlineShoppingModel.Tbl_Transaction">
+        <MappingFragment StoreEntitySet="Tbl_Transaction">
+          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Members">
+      <EntityTypeMapping TypeName="dbMyOnlineShoppingModel.Tbl_Members">
+        <MappingFragment StoreEntitySet="Tbl_Members">
+          <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="ConfirmPass" ColumnName="ConfirmPass" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

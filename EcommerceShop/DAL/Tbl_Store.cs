@@ -26,6 +26,10 @@ public partial class Tbl_Store
 
         this.Tbl_Product = new HashSet<Tbl_Product>();
 
+        this.Tbl_Transaction = new HashSet<Tbl_Transaction>();
+
+        this.Tbl_Members = new HashSet<Tbl_Members>();
+
     }
 
 
@@ -57,11 +61,19 @@ public partial class Tbl_Store
 
     public virtual ICollection<Tbl_MemberInfo> Tbl_MemberInfo { get; set; }
 
-    public virtual Tbl_Members Tbl_Members { get; set; }
-
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<Tbl_Product> Tbl_Product { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Tbl_Transaction> Tbl_Transaction { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Tbl_Members> Tbl_Members { get; set; }
+
+    public virtual Tbl_Members Tbl_Members1 { get; set; }
 
 }
 

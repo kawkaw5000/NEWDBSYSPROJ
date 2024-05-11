@@ -43,8 +43,6 @@ public partial class dbMyOnlineShoppingEntities : DbContext
 
     public virtual DbSet<Tbl_MemberInfo> Tbl_MemberInfo { get; set; }
 
-    public virtual DbSet<Tbl_Members> Tbl_Members { get; set; }
-
     public virtual DbSet<Tbl_Roles> Tbl_Roles { get; set; }
 
     public virtual DbSet<Tbl_SlideImage> Tbl_SlideImage { get; set; }
@@ -60,6 +58,10 @@ public partial class dbMyOnlineShoppingEntities : DbContext
     public virtual DbSet<Tbl_ShippingDetails> Tbl_ShippingDetails { get; set; }
 
     public virtual DbSet<Tbl_Store> Tbl_Store { get; set; }
+
+    public virtual DbSet<Tbl_Transaction> Tbl_Transaction { get; set; }
+
+    public virtual DbSet<Tbl_Members> Tbl_Members { get; set; }
 
 
     public virtual ObjectResult<GetBySearch_Result> GetBySearch(string search)

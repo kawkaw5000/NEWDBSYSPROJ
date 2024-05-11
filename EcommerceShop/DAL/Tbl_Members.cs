@@ -22,17 +22,19 @@ public partial class Tbl_Members
     public Tbl_Members()
     {
 
-        this.Tbl_MemberInfo = new HashSet<Tbl_MemberInfo>();
+        this.Tbl_Brand = new HashSet<Tbl_Brand>();
 
         this.Tbl_Category = new HashSet<Tbl_Category>();
 
-        this.Tbl_Brand = new HashSet<Tbl_Brand>();
-
-        this.Tbl_Product = new HashSet<Tbl_Product>();
+        this.Tbl_MemberInfo = new HashSet<Tbl_MemberInfo>();
 
         this.Tbl_ShippingDetails = new HashSet<Tbl_ShippingDetails>();
 
-        this.Tbl_Store = new HashSet<Tbl_Store>();
+        this.Tbl_Product = new HashSet<Tbl_Product>();
+
+        this.Tbl_Store1 = new HashSet<Tbl_Store>();
+
+        this.Tbl_Transaction = new HashSet<Tbl_Transaction>();
 
     }
 
@@ -59,21 +61,9 @@ public partial class Tbl_Members
 
     public Nullable<int> roleId { get; set; }
 
+    public Nullable<int> StoreId { get; set; }
 
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<Tbl_MemberInfo> Tbl_MemberInfo { get; set; }
-
-    public virtual Tbl_Members Tbl_Members1 { get; set; }
-
-    public virtual Tbl_Members Tbl_Members2 { get; set; }
-
-    public virtual Tbl_Roles Tbl_Roles { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<Tbl_Category> Tbl_Category { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
@@ -81,7 +71,11 @@ public partial class Tbl_Members
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<Tbl_Product> Tbl_Product { get; set; }
+    public virtual ICollection<Tbl_Category> Tbl_Category { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Tbl_MemberInfo> Tbl_MemberInfo { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
@@ -89,7 +83,23 @@ public partial class Tbl_Members
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<Tbl_Store> Tbl_Store { get; set; }
+    public virtual ICollection<Tbl_Product> Tbl_Product { get; set; }
+
+    public virtual Tbl_Members Tbl_Members1 { get; set; }
+
+    public virtual Tbl_Members Tbl_Members2 { get; set; }
+
+    public virtual Tbl_Roles Tbl_Roles { get; set; }
+
+    public virtual Tbl_Store Tbl_Store { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Tbl_Store> Tbl_Store1 { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Tbl_Transaction> Tbl_Transaction { get; set; }
 
 }
 
