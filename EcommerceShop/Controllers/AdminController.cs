@@ -150,7 +150,8 @@ namespace EcommerceShop.Controllers
 
         
             tbl.MemberId = memberId;
-
+            tbl.IsActive = true;
+            tbl.IsDelete = false;
             _unitOfWork.GetRepositoryInstance<Tbl_Category>().Add(tbl);
             _unitOfWork.SaveChanges();
             return RedirectToAction("Categories");
@@ -181,6 +182,8 @@ namespace EcommerceShop.Controllers
             }
 
             existingCategory.CategoryName = tbl.CategoryName;
+            existingCategory.IsActive = tbl.IsActive;
+            existingCategory.IsDelete = tbl.IsDelete;
 
 
             _unitOfWork.GetRepositoryInstance<Tbl_Category>().Update(existingCategory);
@@ -239,7 +242,8 @@ namespace EcommerceShop.Controllers
 
 
             tbl.MemberId = memberId;
-
+            tbl.IsActive = true;
+            tbl.IsDelete = false;
             _unitOfWork.GetRepositoryInstance<Tbl_Brand>().Add(tbl);
             _unitOfWork.SaveChanges();
             return RedirectToAction("Brand");
@@ -270,6 +274,8 @@ namespace EcommerceShop.Controllers
             }
 
             existingBrand.BrandName = tbl.BrandName;
+            existingBrand.IsActive = tbl.IsActive;
+            existingBrand.IsDelete = tbl.IsDelete;
     
       
             _unitOfWork.GetRepositoryInstance<Tbl_Brand>().Update(existingBrand);
@@ -331,6 +337,8 @@ namespace EcommerceShop.Controllers
             existingProduct.Quantity = tbl.Quantity;
             existingProduct.CategoryId = tbl.CategoryId;
             existingProduct.IsFeatured = tbl.IsFeatured;
+            existingProduct.IsActive = tbl.IsActive;
+            existingProduct.IsDelete = tbl.IsDelete;
 
         
             if (file != null)
@@ -368,7 +376,9 @@ namespace EcommerceShop.Controllers
 
             tbl.ProductImage = pic;
             tbl.CreatedDate = DateTime.Now;
-            tbl.MemberId = memberId; 
+            tbl.MemberId = memberId;
+            tbl.IsActive = true;
+            tbl.IsDelete = false;
             _unitOfWork.GetRepositoryInstance<Tbl_Product>().Add(tbl);
             return RedirectToAction("Product");
         }
